@@ -30,8 +30,8 @@ const fetchBalance = async (client, asset1, asset2, quote) => {
         let ticker = await client.fetchTicker(quote)
         console.log(balance)
         // console.log(ticker)
-        let asset1Val = parseFloat('1.2')
-        let asset2Val = parseFloat('1000000000')
+        let asset1Val = parseFloat('1000') //ETH
+        let asset2Val = parseFloat('1600') //USD
 
         console.log('asset_1_val : ' + asset1Val)
         console.log('asset_2_val : ' + asset2Val)
@@ -102,12 +102,14 @@ const main = async () => {
         console.log(quote)
 
         let client = await authenticate(apiKey, secret, password, accountName)
-        let { averagePrice, asset1Val, asset2Val } = await fetchBalance(client, asset1, asset2, quote)
+        const { averagePrice, asset1Val, asset2Val } = await fetchBalance(client, asset1, asset2, quote)
         action(averagePrice, asset1Val, asset2Val, client, quote, pcdiff)
+
+       
 
     } catch (err) {
         console.log(err)
     }
 }
 
-main()
+setInterval(main, 5000)
