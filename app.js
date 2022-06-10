@@ -65,13 +65,13 @@ const action = (averagePrice, asset1Val, asset2Val, client, quote, pcdiff) => {
             console.log('Sell')
             console.log(diffSell)
             // client.createOrder(quote, 'market', 'sell', (diffSell / averagePrice))
-            console.log("\x1b[32m", 'Profit')
+            // console.log("\x1b[32m", 'Profit')
         } else if (asset1CrrtVal < (rebalanceMark - rebalanceMark)) {
             console.log('asset_1_Crrt_val : ' + asset1CrrtVal + ' < ' + (rebalanceMark - compareRebalance))
             console.log('Buy')
             console.log(diffBuy)
             // client.createOrder(quote, 'market', 'buy', (diffBuy/averagePrice))
-            console.log("\x1b[31m", 'Loss')
+            // console.log("\x1b[31m", 'Loss')
         }else{
             console.log('None Trading')
         }
