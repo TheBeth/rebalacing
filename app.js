@@ -50,10 +50,10 @@ const fetchBalance = async (client, asset1, asset2, quote) => {
     }
 }
 
-const action = (averagePrice, asset1Val, asset2Val, client, quote, pcdiff) => {
+const action = (avgPrice, ass1Val, ass2val, client, quote, pcdiff) => {
     try {
-        let asset1CrrtVal = asset1Val * averagePrice
-        let asset2CrrtVal = asset2Val * 1
+        let asset1CrrtVal = ass1Val * avgPrice
+        let asset2CrrtVal = ass2val * 1
         let rebalanceMark = ((asset1CrrtVal + asset2CrrtVal) / 2)
         let rebalancePercentDiff = pcdiff
         let compareRebalance = (rebalanceMark * rebalancePercentDiff / 100)
@@ -102,8 +102,11 @@ const main = async () => {
         console.log(quote)
 
         let client = await authenticate(apiKey, secret, password, accountName)
-        const { averagePrice, asset1Val, asset2Val } = await fetchBalance(client, asset1, asset2, quote)
-        action(averagePrice, asset1Val, asset2Val, client, quote, pcdiff)
+        const fetch = await fetchBalance(client, asset1, asset2, quote)
+        let avgPrice = fetch.averagePrice
+        let ass1Val = fetch.asset1Val
+        let ass2val = fetch.asset2Val
+        action(avgPrice, ass1Val, ass2val, client, quote, pcdiff)
 
        
 
