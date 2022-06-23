@@ -102,17 +102,17 @@ const main = async () => {
         console.log(quote)
 
         let client = await authenticate(apiKey, secret, password, accountName)
-        const fetch = await fetchBalance(client, asset1, asset2, quote)
-        let avgPrice = fetch.averagePrice
-        let ass1Val = fetch.asset1Val
-        let ass2val = fetch.asset2Val
+        const fetchBalance = await fetchBalance(client, asset1, asset2, quote)
+        let avgPrice = fetchBalance.averagePrice
+        let ass1Val = fetchBalance.asset1Val
+        let ass2val = fetchBalance.asset2Val
         action(avgPrice, ass1Val, ass2val, client, quote, pcdiff)
 
-       
-
+    
     } catch (err) {
         console.log(err)
     }
 }
 
-setInterval(main, 5000)
+// setInterval(main, 5000)
+main()
